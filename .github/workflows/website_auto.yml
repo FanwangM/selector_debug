@@ -45,7 +45,7 @@ jobs:
 
       # Push the book's HTML to github-pages
       - name: GitHub Pages Action
-        if: ${{ github.event.pull_request.merged == true }}
+        if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
