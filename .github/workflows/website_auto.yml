@@ -49,4 +49,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book/content/_build/html
           publish_branch: gh-pages
-          cname: selector.qcdevs.org
+          cname: fanwangm.github.io/selector_debug
