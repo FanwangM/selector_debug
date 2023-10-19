@@ -42,11 +42,11 @@ jobs:
           jupyter-book build ./book/content
 
       # Push the book's HTML to github-pages
-      - name: GitHub Pages action
-        if: github.ref == 'refs/heads/main'
+      - name: GitHub Pages Action
+        if: ${{ github.event.pull_request.merged == true }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book/content/_build/html
           publish_branch: gh-pages
-          cname: selector.qcdevs.org
+          cname: fanwangm.github.io/selector_debug
