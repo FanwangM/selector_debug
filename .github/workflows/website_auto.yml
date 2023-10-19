@@ -19,7 +19,6 @@ on:
 # This job installs dependencies, builds the book, and pushes it to `gh-pages`
 jobs:
   deploy-book:
-    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -52,28 +51,3 @@ jobs:
           publish_dir: ./book/content/_build/html
           publish_branch: gh-pages
           cname: xxx.github.io/xxx
-
-  test_building_book:
-    if: ${{ github.event.pull_request.merged == false }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      # Install dependencies
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-
-      - name: Install dependencies
-        run: |
-          pip install -r book/content/requirements.txt
-      # Install DiverseSelector
-      - name: Install package
-        run: |
-          pip install -e .
-
-      # Build the book
-      - name: Build the book
-        run: |
-          jupyter-book build ./book/content
